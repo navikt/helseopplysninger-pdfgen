@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="author" content="helseopplysninger"/>
+    <meta name="subject" content="Legeerklæring"/>
+    <meta name="description" content="Legeerklæring for pleiepenger for sykt barn"/>
+    <style>
+        @page {
+            margin: 1cm;
+        }
+
+        * {
+            font-family: "Source Sans Pro", SourceSansPro, Source_Sans_Pro,
+            ArialSystem, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 5px;
+            border-spacing: 0;
+            border: 1px black solid;
+        }
+
+        th, td {
+            vertical-align: top;
+            padding-left: 5px;
+        }
+
+        th {
+            background-color: #dddddd;
+        }
+
+        h1, h2, h3 {
+            margin: 10px 0 3px 0;
+            padding: 0;
+        }
+
+        caption {
+            text-align: left;
+        }
+
+        .info_box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px black solid;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding-left: 5px;
+            max-width: 50%;
+            width: auto;
+        }
+
+        .text_content_container {
+            width: 100%;
+            height: 40%;
+            border: 1px black solid;
+            border-radius: 5px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .text_content {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            margin: 2px;
+            padding-left: 5px;
+        }
+
+        .box_label {
+            font-weight: bold;
+            align-self: flex-start;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        .box_content {
+            align-self: flex-end;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        .address, td p {
+            margin: 0;
+        }
+
+        span {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+    <title>Pleiepenger for sykt barn</title>
+</head>
+<body>
+<div class="title-wrapper">
+    <h1>Legeerklæring</h1>
+    <h3>Pleiepenger for sykt barn</h3>
+</div>
+<div class="patient_info">
+    <div class="patient_container">
+        <h3>Om barnet</h3>
+        <div class="info_box">
+            <p class="box_label">Barnets navn</p>
+            <p class="box_content">{{pasient.fornavn}} {{pasient.mellomnavn}} {{pasient.etternavn}}</p>
+        </div>
+        <div class="info_box">
+            <p class="box_label">Fødselsnummer/D-nummer</p>
+            <p class="box_content">{{pasient.personnummer}}</p>
+        </div>
+
+        <table>
+            <caption>Pårørende til stede under konsultasjon</caption>
+            <tr>
+                <th>Fødselsnummer/D-nummer</th>
+                <th>Navn</th>
+                <th>Forhold</th>
+            </tr>
+            {{#each pasient.pårørende}}
+                <tr>
+                    <td>{{personnummer}}</td>
+                    <td>{{fornavn}} {{mellomnavn}} {{etternavn}}</td>
+                    <td>{{forhold}}</td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+
+    <div class="health_certificate_container">
+        <h3>Legens vurdering av barnets tilstand</h3>
+        <div class="health_assessment_container">
+            <div class="text_content_container">
+                <p class="text_content">{{pasient.legeerklæring.vurdering}}</p>
+            </div>
+
+            <table>
+                <caption>Hoveddiagnose</caption>
+                <tr>
+                    <th>Diagnosekode</th>
+                    <th>Diagnoseterm</th>
+                </tr>
+                <tr>
+                    <td>{{pasient.legeerklæring.hoveddiagnose.diagnosekode}}</td>
+                    <td>{{pasient.legeerklæring.hoveddiagnose.diagnoseterm}}</td>
+                </tr>
+            </table>
+
+            <table>
+                <caption>Bidiagnose(r)</caption>
+                <tr>
+                    <th>Diagnosekode</th>
+                    <th>Diagnoseterm</th>
+                </tr>
+                {{#each pasient.legeerklæring.bidiagnoser}}
+                    <tr>
+                        <td>{{diagnosekode}}</td>
+                        <td>{{diagnoseterm}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+
+        <div class="health_certificate_tables">
+            <table class="health_certificate_table">
+                <caption>Periode(r) for innleggelse(r) på helseinstitusjon</caption>
+                <tr>
+                    <th>Fra og med dato</th>
+                    <th>Til og med dato</th>
+                </tr>
+                {{#each pasient.legeerklæring.innleggelser.perioder}}
+                    <tr>
+                        <td>{{fom}}</td>
+                        <td>{{tom}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+
+            <table class="health_certificate_table">
+                <caption>Forventet varighet på tilsyns- og pleiebehovet</caption>
+                <tr>
+                    <th>Fra og med dato</th>
+                    <th>Til og med dato</th>
+                </tr>
+                {{#each pasient.legeerklæring.tilsyn.perioder}}
+                    <tr>
+                        <td>{{fom}}</td>
+                        <td>{{tom}}</td>
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+<div class="healthcare_info">
+    <div class="healthcare_provider_container">
+        <h3>Opplysninger om lege/sykehuset</h3>
+        <table>
+            <tr>
+                <td>
+                    <span>Legens navn</span>
+                    <p>{{helsepersonell.fornavn}} {{helsepersonell.mellomnavn}} {{helsepersonell.etternavn}}</p>
+                </td>
+                <td rowspan="2">
+                    <span>Navn, adresse og telefonnummer til legen/sykehuset</span>
+                    <div class="address">
+                        <p>{{helsepersonell.adresseInfo.navn}}</p>
+                        <p>{{helsepersonell.adresseInfo.adresse.gateadresse}}</p>
+                        <p>{{helsepersonell.adresseInfo.adresse.gateadresse2}}</p>
+                        <p>{{helsepersonell.adresseInfo.adresse.postkode}} {{helsepersonell.adresseInfo.adresse.by}}</p>
+                        <p>{{helsepersonell.adresseInfo.telefonnummer}}</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Legens HPR-nummer</span>
+                    <p>{{helsepersonell.hpr}}</p>
+                </td>
+            </tr>
+        </table>
+        <div class="certificate_signature">
+            <table>
+                <tr>
+                    <td>
+                        <span>Dato og sted</span>
+                        <p>{{helsepersonell.signatur.dato}} {{helsepersonell.signatur.sted}}</p>
+                    </td>
+                    <td>
+                        <span>Legens underskrift (elektronisk underskrift er godkjent)</span>
+                        <p>{{helsepersonell.signatur.esign}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

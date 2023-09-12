@@ -1,0 +1,82 @@
+{
+  "pasient": {
+    "fornavn": "Astrid",
+    "mellomnavn": "",
+    "etternavn": "Nordmann",
+    "personnummer": "10012012345",
+    "pårørende": [
+      {
+        "fornavn": "Ola",
+        "mellomnavn": "",
+        "etternavn": "Nordmann",
+        "personnummer": "14048412345",
+        "forhold": "FAR"
+      },
+      {
+        "fornavn": "Kari",
+        "mellomnavn": "Johanne",
+        "etternavn": "Nordmann",
+        "personnummer": "12108712345",
+        "forhold": "MOR"
+      }
+    ],
+    "legeerklæring": {
+      "vurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
+      "hoveddiagnose": {
+        "diagnoseterm": "Irritabel tarm-syndrom",
+        "diagnosekode": "K58"
+      },
+      "bidiagnoser": [
+        {
+          "diagnoseterm": "Andre hodepinesyndromer",
+          "diagnosekode": "G44"
+        },
+        {
+          "diagnoseterm": "Atopisk dermatitt",
+          "diagnosekode": "L20"
+        }
+      ],
+      "innleggelser": {
+        "perioder": [
+          {
+            "fom": "2022-08-01",
+            "tom": "2022-08-20"
+          },
+          {
+            "fom": "2022-12-08",
+            "tom": "2023-01-01"
+          }
+        ]
+      },
+      "tilsyn": {
+        "perioder": [
+          {
+            "fom": "2023-01-01",
+            "tom": "2023-02-01"
+          }
+        ]
+      }
+    }
+  },
+  "helsepersonell": {
+    "fornavn": "Lege",
+    "mellomnavn": "",
+    "etternavn": "Legesen",
+    "hpr": "987654321",
+    "adresseInfo": {
+      "navn": "Sykehuset i Vestfold",
+      "telefonnummer": "33342000",
+      "adresse": {
+        "gateadresse": "Halfdan Wilhelmsens alle 17",
+        "gateadresse2": "",
+        "postkode": "3103",
+        "by": "Tønsberg"
+      }
+    },
+    "signatur": {
+      "dato": "2023-09-01",
+      "sted": "Tønsberg",
+      "esign": "ndfjsahgoheiroahgruehafu877w8fgb38gh289aoiewg7cg8wa78oc"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: pdfgen
+  namespace: helseopplysninger
+  labels:
+    team: helseopplysninger
+spec:
+  accessPolicy:
+    inbound:
+      rules:
+        - application: server-helse
+
+  image: {{ image }}
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 80
+  liveness:
+    path: /internal/is_alive
+  readiness:
+    path: /internal/is_ready
+  prometheus:
+    enabled: true
+    path: /prometheus

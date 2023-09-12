@@ -1,0 +1,27 @@
+apiVersion: "nais.io/v1"
+kind: "Alert"
+metadata:
+  name: helseopplysninger-pdfgen-alerts
+  labels:
+    team: helseopplysninger
+    app: helseopplysninger-pdfgen
+  namespace: helseopplysninger
+spec:
+  receivers:
+    slack:
+      channel: '#helseopplysninger-github'
+  alerts:
+    - alert: helseopplysninger-pdfgen-app-nede
+      expr: kube_deployment_status_replicas_unavailable{deployment="soknad-api",job="kubernetes-service-endpoints"} > 0
+      for: 5m
+      description: "pdfgen har utilgjengelige podder i helseopplysninger"
+      action: "kubectl describe pod -l app=pdfgen -n helseopplysninger` for events og `kubectl get pods -l app=pdfgen -n helseopplysninger` for å se feilende podder"
+      sla: respond within 1h, during office hours
+      severity: danger
+    - alert: helseopplysninger-pdfgen-kontinuerlig-restart
+      expr: sum(increase(kube_pod_container_status_restarts_total{container=~"pdfgen"}[5m])) by (container) > 2
+      for: 2m
+      description: "pdfgen har restartet flere ganger de siste 5 minuttene!"
+      action: "Se `kubectl describe pod pdfgen` for events, og `kubectl logs pdfgen` for logger"
+      sla: respond within 1h, during office hours
+      severity: danger
