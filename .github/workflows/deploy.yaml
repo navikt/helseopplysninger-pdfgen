@@ -1,37 +1,33 @@
-name: Deploy to dev and prod
-on:
-  push:
-    branches:
-      - main
+name: Build, push and deploy
+on: [push]
 
 jobs:
-  build-push-deploy:
+  build:
+    name: Checkout code and create docker tag
+    runs-on: ubuntu-latest
     permissions:
       contents: "read"
       id-token: "write"
-    name: Checkout code and create docker tag
-    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: docker-build-push
+      - uses: actions/checkout@v4
+      - name: Push docker image to GAR
         uses: nais/docker-build-push@v0
         id: docker-build-push
         with:
           team: helseopplysninger
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-      - name: deploy to dev-gcp
-        uses: nais/deploy/actions/deploy@master
+          project_id: ${{ secrets.NAIS_MANAGEMENT_PROJECT_ID }}
+  deploy-dev:
+    name: Deploy to NAIS
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nais/deploy/actions/deploy@master
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY_HELSEOPPLYSNINGER }}
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: naiserator-dev.yaml
-          VAR: image=${{ steps.docker-build-push.outputs.image }}
-      - name: deploy to prod-gcp
-        uses: nais/deploy/actions/deploy@master
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY_HELSEOPPLYSNINGER }}
-          CLUSTER: prod-gcp
-          RESOURCE: naiserator-prod.yaml
-          VAR: image=${{ steps.docker-build-push.outputs.image }}
+          RESOURCE: nais.yaml
+          VAR: image=${{ needs.build.outputs.image }}
