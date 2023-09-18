@@ -1,4 +1,5 @@
-# PdfGen
+[![Build status](https://github.com/navikt/helseopplysninger-pdfgen/workflows/Build,%20push%20and%20deploy/badge.svg)](https://github.com/navikt/helseopplysninger-pdfgen/workflows/Build,%20push%20and%20deploy/badge.svg)
+# Helseopplysninger PDF generator
 Repository for team helseopplysninger pdfgen templates.
 
 ## Technologies & Tools
