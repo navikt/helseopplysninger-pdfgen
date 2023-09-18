@@ -4,7 +4,7 @@ metadata:
   name: helseopplysninger-pdfgen-alerts
   labels:
     team: helseopplysninger
-    app: helseopplysninger-pdfgen
+    app: hopdfgen
   namespace: helseopplysninger
 spec:
   alerts:
