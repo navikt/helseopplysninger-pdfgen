@@ -20,7 +20,7 @@ jobs:
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
   deploy-dev:
-    name: Deploy to NAIS
+    name: Deploy to NAIS dev
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -29,5 +29,17 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
+          RESOURCE: nais.yaml
+          VAR: image=${{ needs.build.outputs.image }}
+  deploy-prod:
+    name: Deploy to NAIS prod
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nais/deploy/actions/deploy@master
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
           RESOURCE: nais.yaml
           VAR: image=${{ needs.build.outputs.image }}
