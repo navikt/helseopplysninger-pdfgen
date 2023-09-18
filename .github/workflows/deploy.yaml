@@ -18,7 +18,7 @@ jobs:
         with:
           team: helseopplysninger
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ secrets.NAIS_MANAGEMENT_PROJECT_ID }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
   deploy-dev:
     name: Deploy to NAIS
     needs: build
