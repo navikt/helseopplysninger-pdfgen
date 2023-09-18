@@ -9,7 +9,7 @@ Repository for team helseopplysninger pdfgen templates.
 #### Creating a docker image
 Creating a docker image should be as simple as
 ```bash
-docker build -t helseopplysninger-pdfgen .
+docker build -t hopdfgen .
 ```
 
 ## Getting started
