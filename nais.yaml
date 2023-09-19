@@ -10,6 +10,7 @@ spec:
     inbound:
       rules:
         - application: server-helse
+        - application: k9-legeerklaering-on-fhir
 
   image: {{ image }}
   replicas:
