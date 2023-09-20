@@ -11,12 +11,13 @@ jobs:
       contents: "read"
       id-token: "write"
     outputs:
-      image: ${{ steps.docker-build-push.outputs.image }}
+      image: ${{ steps.set-image.outputs.image }}
     steps:
       - name: Setter tag-navn
         run: echo "TAG=$(date +%Y.%m.%d.%H%M%S)-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Setter image
+        id: set-image
         run:  echo "image=${{ env.IMAGE }}:${{ env.TAG }}" >> $GITHUB_OUTPUT
 
       - uses: actions/checkout@v4
