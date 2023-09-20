@@ -34,7 +34,7 @@ jobs:
       matrix:
         cluster: [ dev-gcp, prod-gcp ]
     name: Deploy til ${{matrix.cluster}}
-    needs: bygg
+    needs: build
     runs-on: ubuntu-latest
     environment: ${{matrix.cluster}}:aap
     env:
