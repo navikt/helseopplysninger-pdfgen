@@ -6,6 +6,9 @@ metadata:
   labels:
     team: helseopplysninger
 spec:
+  azure:
+    application:
+      enabled: true
   accessPolicy:
     inbound:
       rules:
