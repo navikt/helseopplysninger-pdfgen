@@ -20,7 +20,6 @@ jobs:
         id: set-image
         run: |
             echo "image=${{ env.IMAGE_BASE }}:${{ env.TAG }}" >> $GITHUB_OUTPUT
-            echo "image=${{ env.IMAGE_BASE }}:${{ env.TAG }}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v4
 
