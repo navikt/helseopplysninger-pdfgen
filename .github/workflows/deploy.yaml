@@ -1,5 +1,7 @@
 name: Build, push and deploy
 on: [push]
+env:
+  IMAGE: europe-north1-docker.pkg.dev/${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}/helseopplysninger/${{ github.event.repository.name }}
 
 jobs:
   build:
@@ -11,7 +13,14 @@ jobs:
     outputs:
       image: ${{ steps.docker-build-push.outputs.image }}
     steps:
+      - name: Setter tag-navn
+        run: echo "TAG=$(date +%Y.%m.%d.%H%M%S)-$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+
+      - name: Setter image
+        run:  echo "image=${{ env.IMAGE }}:${{ env.TAG }}" >> $GITHUB_OUTPUT
+
       - uses: actions/checkout@v4
+
       - name: Push docker image to GAR
         uses: nais/docker-build-push@v0
         id: docker-build-push
@@ -19,27 +28,22 @@ jobs:
           team: helseopplysninger
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-  deploy-dev:
-    name: Deploy to NAIS dev
-    needs: build
+
+  deploy:
+    strategy:
+      matrix:
+        cluster: [ dev-gcp, prod-gcp ]
+    name: Deploy til ${{matrix.cluster}}
+    needs: bygg
     runs-on: ubuntu-latest
+    environment: ${{matrix.cluster}}:aap
+    env:
+      PRINT_PAYLOAD: true
+      TIMEOUT: 30m
+      APIKEY: ${{secrets.NAIS_DEPLOY_APIKEY}}
+      RESOURCE: nais.yaml
+      CLUSTER: ${{matrix.cluster}}
+      IMAGE: ${{needs.build.outputs.image}}
     steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-gcp
-          RESOURCE: nais.yaml
-          VAR: image=${{ needs.build.outputs.image }}
-  deploy-prod:
-    name: Deploy to NAIS prod
-    needs: [build, deploy-dev]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: prod-gcp
-          RESOURCE: nais.yaml
-          VAR: image=${{ needs.build.outputs.image }}
+      -   uses: actions/checkout@v4
+      -   uses: nais/deploy/actions/deploy@v1
