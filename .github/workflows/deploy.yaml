@@ -39,7 +39,7 @@ jobs:
     name: Deploy til ${{matrix.cluster}}
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{matrix.cluster}}:aap
+    environment: ${{matrix.cluster}}:helseopplysninger
     env:
       PRINT_PAYLOAD: true
       TIMEOUT: 30m
