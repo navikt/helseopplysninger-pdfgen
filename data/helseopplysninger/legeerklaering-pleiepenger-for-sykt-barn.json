@@ -1,9 +1,10 @@
 {
   "legeerklæring": {
     "barn": {
-      "name": "Astrid",
-      "identifier": "10012012345",
-      "birthDate": "2020-01-10"
+      "fornavn": "Astrid",
+      "etternavn": "Hansen",
+      "identifier": "28822747789",
+      "birthDate": "2010-04-08"
     },
     "legensVurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
     "hoveddiagnose": {
@@ -38,15 +39,16 @@
     ]
   },
   "doctor": {
-    "hprNumber": "987654321",
-    "name": "Lege Legesen"
+    "hprNumber": "123456789",
+    "fornavn": "Parat",
+    "mellomnavn": "Sikker",
+    "etternavn": "Sjøsetting"
   },
   "hospital": {
     "name": "Sykehuset i Vestfold",
     "phoneNumber": "33342000",
     "address": {
       "line1": "Halfdan Wilhelmsens alle 17",
-      "line2": "",
       "postalCode": "3103",
       "city": "Tønsberg"
     }
