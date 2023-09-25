@@ -1,56 +1,60 @@
 {
   "legeerklæring": {
-    "barn": {
-      "fornavn": "Astrid",
-      "etternavn": "Hansen",
-      "identifier": "28822747789",
-      "birthDate": "2010-04-08"
+    "pasient": {
+      "navn": {
+        "fornavn": "Astrid",
+        "etternavn": "Hansen"
+      },
+      "fnr": "28822747789",
+      "fødselsdato": "2010-04-08"
     },
-    "legensVurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
+    "vurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
     "hoveddiagnose": {
-      "code": "K58",
-      "text": "Irritabel tarm-syndrom"
+      "kode": "K58",
+      "term": "Irritabel tarm-syndrom"
     },
     "bidiagnoser": [
       {
-        "code": "G44",
-        "text": "Andre hodepinesyndromer"
+        "kode": "G44",
+        "term": "Andre hodepinesyndromer"
       },
       {
-        "code": "L20",
-        "text": "Atopisk dermatitt"
+        "kode": "L20",
+        "term": "Atopisk dermatitt"
       }
     ],
     "tilsynPerioder": [
       {
-        "start": "2023-01-01",
-        "end": "2023-02-01"
+        "fom": "2023-01-01",
+        "tom": "2023-02-01"
       }
     ],
     "innleggelsesPerioder": [
       {
-        "start": "2022-08-01",
-        "end": "2022-08-20"
+        "fom": "2022-08-01",
+        "tom": "2022-08-20"
       },
       {
-        "start": "2022-12-08",
-        "end": "2023-01-01"
+        "fom": "2022-12-08",
+        "tom": "2023-01-01"
       }
     ]
   },
-  "doctor": {
-    "hprNumber": "123456789",
-    "fornavn": "Parat",
-    "mellomnavn": "Sikker",
-    "etternavn": "Sjøsetting"
+  "lege": {
+    "hpr": "123456789",
+    "navn": {
+      "fornavn": "Parat",
+      "etternavn": "Sikker Sjøsetting"
+    }
   },
-  "hospital": {
-    "name": "Sykehuset i Vestfold",
-    "phoneNumber": "33342000",
-    "address": {
-      "line1": "Halfdan Wilhelmsens alle 17",
-      "postalCode": "3103",
-      "city": "Tønsberg"
+  "sykehus": {
+    "navn": "Sykehuset i Vestfold",
+    "tlf": "33342000",
+    "adresse": {
+      "gateadresse": "Halfdan Wilhelmsens alle 17",
+      "gateadresse2": "",
+      "postkode": "3103",
+      "by": "Tønsberg"
     }
   }
 }

@@ -87,17 +87,17 @@
             <tr>
                 <td>
                     <span>Barnets navn</span>
-                    <p>{{legeerklæring.barn.fornavn}} {{legeerklæring.barn.mellomnavn}} {{legeerklæring.barn.etternavn}}</p>
+                    <p>{{legeerklæring.pasient.navn.fornavn}} {{legeerklæring.pasient.navn.etternavn}}</p>
                 </td>
                 <td rowspan="2">
                     <span>Fødselsnummer / D-nummer</span>
-                    <p>{{legeerklæring.barn.identifier}}</p>
+                    <p>{{legeerklæring.pasient.fnr}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span>Fødselsdato</span>
-                    <p>{{legeerklæring.barn.birthDate}}</p>
+                    <p>{{legeerklæring.pasient.fødselsdato}}</p>
                 </td>
             </tr>
         </table>
@@ -107,7 +107,7 @@
         <h3>Legens vurdering av barnets tilstand</h3>
         <div class="health_assessment_container">
             <div class="text_content_container">
-                <p class="text_content">{{legeerklæring.legensVurdering}}</p>
+                <p class="text_content">{{legeerklæring.vurdering}}</p>
             </div>
 
             <table>
@@ -117,8 +117,8 @@
                     <th>Diagnoseterm</th>
                 </tr>
                 <tr>
-                    <td>{{legeerklæring.hoveddiagnose.code}}</td>
-                    <td>{{legeerklæring.hoveddiagnose.text}}</td>
+                    <td>{{legeerklæring.hoveddiagnose.kode}}</td>
+                    <td>{{legeerklæring.hoveddiagnose.term}}</td>
                 </tr>
             </table>
 
@@ -130,8 +130,8 @@
                 </tr>
                 {{#each legeerklæring.bidiagnoser}}
                     <tr>
-                        <td>{{code}}</td>
-                        <td>{{text}}</td>
+                        <td>{{kode}}</td>
+                        <td>{{term}}</td>
                     </tr>
                 {{/each}}
             </table>
@@ -146,8 +146,8 @@
                 </tr>
                 {{#each legeerklæring.innleggelsesPerioder}}
                     <tr>
-                        <td>{{start}}</td>
-                        <td>{{end}}</td>
+                        <td>{{fom}}</td>
+                        <td>{{tom}}</td>
                     </tr>
                 {{/each}}
             </table>
@@ -160,8 +160,8 @@
                 </tr>
                 {{#each legeerklæring.tilsynPerioder}}
                     <tr>
-                        <td>{{start}}</td>
-                        <td>{{end}}</td>
+                        <td>{{fom}}</td>
+                        <td>{{tom}}</td>
                     </tr>
                 {{/each}}
             </table>
@@ -175,23 +175,23 @@
             <tr>
                 <td>
                     <span>Legens navn</span>
-                    <p>{{doctor.fornavn}} {{doctor.mellomnavn}} {{doctor.etternavn}}</p>
+                    <p>{{lege.navn.fornavn}} {{lege.navn.etternavn}}</p>
                 </td>
                 <td rowspan="2">
                     <span>Navn, adresse og telefonnummer til legen/sykehuset</span>
                     <div class="address">
-                        <p>{{hospital.name}}</p>
-                        <p>{{hospital.address.line1}}</p>
-                        <p>{{hospital.address.line2}}</p>
-                        <p>{{hospital.address.postalCode}} {{hospital.address.city}}</p>
-                        <p>{{hospital.phoneNumber}}</p>
+                        <p>{{sykehus.navn}}</p>
+                        <p>{{sykehus.adresse.gateadresse}}</p>
+                        <p>{{sykehus.adresse.gateadresse2}}</p>
+                        <p>{{sykehus.adresse.postkode}} {{sykehus.adresse.by}}</p>
+                        <p>{{sykehus.tlf}}</p>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span>Legens HPR-nummer</span>
-                    <p>{{doctor.hprNumber}}</p>
+                    <p>{{lege.hpr}}</p>
                 </td>
             </tr>
         </table>
