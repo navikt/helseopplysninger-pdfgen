@@ -35,7 +35,7 @@ jobs:
   deploy:
     strategy:
       matrix:
-        cluster: [ dev-gcp, prod-gcp ]
+        cluster: [ dev-gcp ]
     name: Deploy til ${{matrix.cluster}}
     needs: build
     runs-on: ubuntu-latest
