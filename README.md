@@ -16,17 +16,18 @@ docker build -t helseopplysninger-pdfgen .
 ### Run in development mode
 To run the application with templates, data and fonts locally mounted you can use
 ```bash
+export CURRENT_PATH="$(cd "$(dirname "$1")" || exit; pwd)/$(basename "$1")" && 
 docker run \
-        -v /full/path/to/templates:/app/templates \
-        -v /full/path/to/fonts:/app/fonts \
-        -v /full/path/to/data:/app/data \
-        -v /full/path/to/resources:/app/resources \
+        -v "$CURRENT_PATH"/templates:/app/templates \
+        -v "$CURRENT_PATH"/fonts:/app/fonts \
+        -v "$CURRENT_PATH"/data:/app/data \
+        -v "$CURRENT_PATH"/resources:/app/resources \
         -p 8080:8080 \
         -e DISABLE_PDF_GET=false \
         -e JDK_JAVA_OPTIONS \
         -it \
         --rm \
-        ghcr.io/navikt/pdfgen:2.0.11
+        ghcr.io/navikt/pdfgen:2.0.17
 ```
 
 Or you can use the convenience script

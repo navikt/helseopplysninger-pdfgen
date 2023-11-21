@@ -5,8 +5,7 @@
         "fornavn": "Astrid",
         "etternavn": "Hansen"
       },
-      "fnr": "28822747789",
-      "fødselsdato": "2010-04-08"
+      "fnr": "28822747789"
     },
     "vurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
     "hoveddiagnose": {
@@ -56,5 +55,8 @@
       "postkode": "3103",
       "by": "Tønsberg"
     }
+  },
+  "journalføring":{
+    "innsendt": "2019-01-01"
   }
 }

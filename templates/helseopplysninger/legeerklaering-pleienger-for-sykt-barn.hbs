@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="author" content="helseopplysninger"/>
-    <meta name="subject" content="Legeerklæring"/>
-    <meta name="description" content="Legeerklæring for pleiepenger for sykt barn"/>
+    <meta charset="UTF-8" />
+    <meta name="author" content="helseopplysninger" />
+    <meta name="subject" content="Legeerklæring" />
+    <meta name="description" content="Legeerklæring for pleiepenger for sykt barn" />
     <style>
         @page {
+            size: A4;
             margin: 1cm;
         }
 
         * {
-            font-family: "Source Sans Pro", SourceSansPro, Source_Sans_Pro,
-            ArialSystem, sans-serif;
-        }
-
-        body {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9em;
+            font-family: "Source Sans Pro", SourceSansPro, Source_Sans_Pro, ArialSystem, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            font-style: normal;
         }
 
         table {
-            width: 100%;
             margin-bottom: 5px;
             border-spacing: 0;
             border: 1px black solid;
+            border-radius: 2px;
         }
 
         th, td {
             vertical-align: top;
-            padding-left: 5px;
+            padding: 5px 0 5px 5px;
         }
 
         th {
-            background-color: #dddddd;
+            background-color: #ECEEF0;
         }
 
-        h1, h2, h3 {
-            margin: 10px 0 3px 0;
+        h1, h2, h3, p {
+            margin: 15px 0 3px 0;
             padding: 0;
         }
 
@@ -46,87 +44,183 @@
             text-align: left;
         }
 
-        .text_content_container {
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .logo-wrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .logo {
+            width: 48px;
+        }
+
+        .form-title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .qr-code {
+            width: 60px;
+            height: 60px;
+        }
+
+        .label-text {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .bold-label {
+            font-weight: 600;
+        }
+
+        .highlighted-text {
+            font-size: 16px;
+        }
+
+        .patient-info {
+            margin: 5px 0;
+        }
+
+        .patient-details,
+        .qr-details,
+        .health-info {
+            margin: 5px 0 5px 0;
             width: 100%;
-            height: 40%;
+            box-sizing: border-box;
+        }
+
+        .patient-details {
+            float: left;
+            width: 55%;
+        }
+
+        .qr-details {
+            float: right;
+            border: 0;
+            width: 40%;
+            margin-right: 10px;
+        }
+
+        .text-content-container {
+            min-height: 200px;
             border: 1px black solid;
-            border-radius: 5px;
+            border-radius: 2px;
             overflow-y: auto;
             margin-bottom: 10px;
         }
 
-        .text_content {
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            margin: 2px;
+        .text-content {
             padding-left: 5px;
+            margin-top: 2px;
         }
 
-        .address, td p {
+        .main-diagnosis,
+        .additional-diagnosis {
+            width: 100%;
+        }
+
+        .left-table {
+            float: left;
+            width: 100%;
+        }
+        .right-table {
+            float: right;
+            width: 100%;
+        }
+
+        .health-provider-info {
+            margin: 5px 0;
+        }
+
+        .provider-details {
+            position: relative;
+            height: auto;
+            width: 100%;
+        }
+
+        .address,
+        td p {
             margin: 0;
         }
 
-        span {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .submission-receipt {
+            position: relative;
+            margin: 5px 0;
+            border: 1px black solid;
+            border-radius: 2px;
+            padding: 5px;
         }
     </style>
     <title>Pleiepenger for sykt barn</title>
 </head>
+
 <body>
-<div class="title-wrapper">
-    <h1>Legeerklæring</h1>
-    <h3>Pleiepenger for sykt barn</h3>
+<div class="logo-wrapper">
+    <img class="logo" src="{{ image "navlogored.png" }}" alt="NAV logo" />
 </div>
-<div class="patient_info">
-    <div class="patient_container">
-        <h3>Om barnet</h3>
-        <table>
+<div class="title-wrapper">
+    <h1 class="form-title">Legeerklæring: pleiepenger for sykt barn</h1>
+</div>
+<div>
+    <div class="patient-info">
+        <p class="label-text">Om barnet</p>
+        <table class="patient-details">
             <tr>
                 <td>
-                    <span>Barnets navn</span>
+                    <span class="bold-label">Barnets navn</span>
                     <p>{{legeerklæring.pasient.navn.fornavn}} {{legeerklæring.pasient.navn.etternavn}}</p>
-                </td>
-                <td rowspan="2">
-                    <span>Fødselsnummer / D-nummer</span>
-                    <p>{{legeerklæring.pasient.fnr}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <span>Fødselsdato</span>
-                    <p>{{legeerklæring.pasient.fødselsdato}}</p>
+                    <span class="bold-label">Barnets fødselsnummer/D-nummer</span>
+                    <p>{{legeerklæring.pasient.fnr}}</p>
+                </td>
+            </tr>
+        </table>
+        <table class="qr-details">
+            <tr>
+                <td colspan="2">
+                    <p class="label-text">Til deg som skal søke pleiepenger</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="highlighted-text">Skann QR-koden for å komme til søknad om pleiepenger, eller finn søknaden på nav.no</p>
+                </td>
+                <td>
+                    <img class="qr-code" src="{{ image "qrkode.png" }}" alt="QR code" />
                 </td>
             </tr>
         </table>
     </div>
-
-    <div class="health_certificate_container">
-        <h3>Legens vurdering av barnets tilstand</h3>
-        <div class="health_assessment_container">
-            <div class="text_content_container">
-                <p class="text_content">{{legeerklæring.vurdering}}</p>
+    <div class="health-info">
+        <p class="label-text">Legens vurdering av barnets tilstand</p>
+        <div class="health-info-container">
+            <div class="text-content-container">
+                <p class="text-content">{{legeerklæring.vurdering}}</p>
             </div>
-
-            <table>
-                <caption>Hoveddiagnose</caption>
+            <table class="main-diagnosis">
+                <caption class="label-text">Hoveddiagnose</caption>
                 <tr>
-                    <th>Diagnosekode</th>
-                    <th>Diagnoseterm</th>
+                    <th class="bold-label">Diagnosekode</th>
+                    <th class="bold-label">Diagnoseterm</th>
                 </tr>
                 <tr>
                     <td>{{legeerklæring.hoveddiagnose.kode}}</td>
                     <td>{{legeerklæring.hoveddiagnose.term}}</td>
                 </tr>
             </table>
-
-            <table>
-                <caption>Bidiagnose(r)</caption>
+            <table class="additional-diagnosis">
+                <caption class="label-text">Bidiagnose(r)</caption>
                 <tr>
-                    <th>Diagnosekode</th>
-                    <th>Diagnoseterm</th>
+                    <th class="bold-label">Diagnosekode</th>
+                    <th class="bold-label">Diagnoseterm</th>
                 </tr>
                 {{#each legeerklæring.bidiagnoser}}
                     <tr>
@@ -136,13 +230,14 @@
                 {{/each}}
             </table>
         </div>
-
-        <div class="health_certificate_tables">
-            <table class="health_certificate_table">
-                <caption>Periode(r) for innleggelse(r) på helseinstitusjon</caption>
+        <div class="health-periods-container">
+            <table class="left-table">
+                <caption class="label-text">Periode(r) for innleggelse(r) på helseinstitusjon</caption>
                 <tr>
-                    <th>Fra og med dato</th>
-                    <th>Til og med dato</th>
+                    <th class="bold-label">Fra og med dato</th>
+                    <th class="bold-label">Til og med dato
+
+                    </th>
                 </tr>
                 {{#each legeerklæring.innleggelsesPerioder}}
                     <tr>
@@ -151,12 +246,11 @@
                     </tr>
                 {{/each}}
             </table>
-
-            <table class="health_certificate_table">
-                <caption>Forventet varighet på tilsyns- og pleiebehovet</caption>
+            <table class="right-table">
+                <caption class="label-text">Forventet varighet på tilsyns- og pleiebehovet</caption>
                 <tr>
-                    <th>Fra og med dato</th>
-                    <th>Til og med dato</th>
+                    <th class="bold-label">Fra og med dato</th>
+                    <th class="bold-label">Til og med dato</th>
                 </tr>
                 {{#each legeerklæring.tilsynsPerioder}}
                     <tr>
@@ -168,33 +262,35 @@
         </div>
     </div>
 </div>
-<div class="healthcare_info">
-    <div class="healthcare_provider_container">
-        <h3>Opplysninger om lege/sykehuset</h3>
-        <table>
-            <tr>
-                <td>
-                    <span>Legens navn</span>
-                    <p>{{lege.navn.fornavn}} {{lege.navn.etternavn}}</p>
-                </td>
-                <td rowspan="2">
-                    <span>Navn, adresse og telefonnummer til legen/sykehuset</span>
-                    <div class="address">
-                        <p>{{sykehus.navn}}</p>
-                        <p>{{sykehus.adresse.gateadresse}}</p>
-                        <p>{{sykehus.adresse.gateadresse2}}</p>
-                        <p>{{sykehus.adresse.postkode}} {{sykehus.adresse.by}}</p>
-                        <p>{{sykehus.tlf}}</p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <span>Legens HPR-nummer</span>
-                    <p>{{lege.hpr}}</p>
-                </td>
-            </tr>
-        </table>
+<div class="health-provider-info">
+    <p class="label-text">Opplysninger om lege/sykehuset</p>
+    <table class="provider-details">
+        <tr>
+            <td>
+                <span class="bold-label">Legens navn</span>
+                <p>{{lege.navn.fornavn}} {{lege.navn.etternavn}}</p>
+            </td>
+            <td rowspan="2">
+                <span class="bold-label">Navn, adresse og telefonnummer til legen/sykehuset</span>
+                <div class="address">
+                    <p>{{sykehus.navn}}</p>
+                    <p>{{sykehus.adresse.gateadresse}}</p>
+                    <p>{{sykehus.adresse.gateadresse2}}</p>
+                    <p>{{sykehus.adresse.postkode}} {{sykehus.adresse.by}}</p>
+                    <p>{{sykehus.tlf}}</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="bold-label">Legens HPR-nummer</span>
+                <p>{{lege.hpr}}</p>
+            </td>
+        </tr>
+    </table>
+    <div class="submission-receipt">
+        <span class="bold-label">Dato for innsending</span>
+        <p>{{journalføring.innsendt}}</p>
     </div>
 </div>
 </body>
