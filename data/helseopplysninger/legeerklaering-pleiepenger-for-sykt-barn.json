@@ -7,6 +7,16 @@
       },
       "id": "28822747789"
     },
+    "omsorgspersoner": [
+      {
+        "id": "12345678901",
+        "navn": {
+          "fornavn": "Petra",
+          "etternavn": "Omsorgsperson"
+        }
+      }
+    ]
+  },
     "vurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
     "hoveddiagnose": {
       "kode": "K58",
