@@ -199,6 +199,16 @@
             </tr>
         </table>
     </div>
+    <div class="health-provider-info">
+        <table class="provider-details">
+            <caption class="label-text">Omsorgspersoner</caption>
+            {{#each legeerklæring.omsorgspersoner}}
+                <tr>
+                    <td>{{id}} {{navn.fornavn}} {{navn.etternavn}} </td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
     <div class="health-info">
         <p class="label-text">Legens vurdering av barnets tilstand</p>
         <div class="health-info-container">
