@@ -252,12 +252,10 @@
                     <th class="bold-label">Fra og med dato</th>
                     <th class="bold-label">Til og med dato</th>
                 </tr>
-                {{#each legeerklæring.tilsynsPerioder}}
                     <tr>
-                        <td>{{fom}}</td>
-                        <td>{{tom}}</td>
+                        <td>{{legeerklæring.tilsynsPeriode.fom}}</td>
+                        <td>{{legeerklæring.tilsynsPeriode.tom}}</td>
                     </tr>
-                {{/each}}
             </table>
         </div>
     </div>

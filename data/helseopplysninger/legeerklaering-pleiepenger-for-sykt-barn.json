@@ -22,12 +22,11 @@
         "term": "Atopisk dermatitt"
       }
     ],
-    "tilsynsPerioder": [
+    "tilsynsPeriode":
       {
         "fom": "2023-01-01",
         "tom": "2023-02-01"
-      }
-    ],
+      },
     "innleggelsesPerioder": [
       {
         "fom": "2022-08-01",
