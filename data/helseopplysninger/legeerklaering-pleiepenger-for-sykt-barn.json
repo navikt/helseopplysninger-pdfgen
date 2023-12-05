@@ -5,9 +5,19 @@
         "fornavn": "Astrid",
         "etternavn": "Hansen"
       },
-      "fnr": "28822747789"
+      "id": "28822747789"
     },
-    "vurdering": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet",
+    "omsorgspersoner": [
+      {
+        "id": "12345678901",
+        "navn": {
+          "fornavn": "Petra",
+          "etternavn": "Omsorgsperson"
+        }
+      }
+    ],
+    "vurderingAvBarnet": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet.",
+    "vurderingAvOmsorgspersoner": "Som barnets mor er Petra i stand til å ta vare på barnet.",
     "hoveddiagnose": {
       "kode": "K58",
       "term": "Irritabel tarm-syndrom"
@@ -22,12 +32,11 @@
         "term": "Atopisk dermatitt"
       }
     ],
-    "tilsynsPerioder": [
+    "tilsynsPeriode":
       {
         "fom": "2023-01-01",
         "tom": "2023-02-01"
-      }
-    ],
+      },
     "innleggelsesPerioder": [
       {
         "fom": "2022-08-01",
