@@ -203,12 +203,13 @@
         <table class="provider-details">
             <caption class="label-text">Omsorgspersoner</caption>
             <tr>
-                <th class="bold-label">Id</th>
+                <th class="bold-label">Fødselsnummer/D-nummer</th>
                 <th class="bold-label">Navn</th>
             </tr>
             {{#each legeerklæring.omsorgspersoner}}
                 <tr>
-                    <td>{{id}} {{navn.fornavn}} {{navn.etternavn}} </td>
+                    <td>{{id}}</td>
+                    <td>{{navn.fornavn}} {{navn.etternavn}}</td>
                 </tr>
             {{/each}}
         </table>
