@@ -17,6 +17,7 @@
             font-size: 14px;
             font-weight: 400;
             font-style: normal;
+            page-break-inside: avoid;
         }
 
         table {
@@ -107,7 +108,7 @@
         }
 
         .text-content-container {
-            min-height: 200px;
+            min-height: 100px;
             border: 1px black solid;
             border-radius: 2px;
             overflow-y: auto;
@@ -215,10 +216,14 @@
         </table>
     </div>
     <div class="health-info">
-        <p class="label-text">Legens vurdering av barnets tilstand</p>
         <div class="health-info-container">
+            <p class="label-text">Legens vurdering av barnets tilstand</p>
             <div class="text-content-container">
-                <p class="text-content">{{legeerklæring.vurdering}}</p>
+                <p class="text-content">{{legeerklæring.vurderingAvBarnet}}</p>
+            </div>
+            <p class="label-text">Legens vurdering av omsorgsperson(er)</p>
+            <div class="text-content-container">
+                <p class="text-content">{{legeerklæring.vurderingAvOmsorgspersoner}}</p>
             </div>
             <table class="main-diagnosis">
                 <caption class="label-text">Hoveddiagnose</caption>
