@@ -7,15 +7,6 @@
       },
       "id": "28822747789"
     },
-    "omsorgspersoner": [
-      {
-        "id": "12345678901",
-        "navn": {
-          "fornavn": "Petra",
-          "etternavn": "Omsorgsperson"
-        }
-      }
-    ],
     "vurderingAvBarnet": "Pasientens tilstand er alvorlig, og hun trenger støtte fra helsevesenet.",
     "vurderingAvOmsorgspersoner": "Som barnets mor er Petra i stand til å ta vare på barnet.",
     "hoveddiagnose": {
