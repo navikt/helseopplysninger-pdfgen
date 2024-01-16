@@ -1,5 +1,6 @@
 {
   "legeerklæring": {
+    "innsendt": "2019-01-01",
     "pasient": {
       "navn": {
         "fornavn": "Astrid",
@@ -55,8 +56,5 @@
       "postkode": "3103",
       "by": "Tønsberg"
     }
-  },
-  "journalføring":{
-    "innsendt": "2019-01-01"
   }
 }
