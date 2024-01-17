@@ -1,7 +1,7 @@
 {
   "legeerklæring": {
     "dokumentreferanse": "123456789",
-    "innsendt": "2019-01-01",
+    "mottatt": "2019-01-01 12:34:56",
     "pasient": {
       "navn": {
         "fornavn": "Astrid",
