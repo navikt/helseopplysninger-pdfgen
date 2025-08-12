@@ -21,7 +21,7 @@ jobs:
         run: |
             echo "image=${{ env.IMAGE_BASE }}:${{ env.TAG }}" >> $GITHUB_OUTPUT
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Push docker image to GAR
         uses: nais/docker-build-push@v0
@@ -48,5 +48,5 @@ jobs:
       CLUSTER: ${{matrix.cluster}}
       IMAGE: ${{needs.build.outputs.image}}
     steps:
-      -   uses: actions/checkout@v4
+      -   uses: actions/checkout@v5
       -   uses: nais/deploy/actions/deploy@v2
